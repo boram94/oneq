@@ -1,1 +1,50 @@
 /* styles.css 건들지 말고 여기다가 추가하세용! */
+
+@font-face {
+  font-family: 'TheJamsil5Bold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* --------- main css --------- */
+.btn-item {
+  height: 10rem;
+  background-color: rgb(136 195 176);
+  font-size: 1.4rem;
+  font-family: 'TheJamsil5Bold';
+  color: #0b3124;
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.20);
+  cursor: pointer;
+  border-radius: 0 10px 0 10px;
+  transition: all 0.3s ease;
+}
+
+.btn-item:hover {
+  background: rgb(100, 173, 149);
+}
+
+.btn-item:active {
+  -webkit-transform: translateY(3px);
+  transform: translateY(3px);
+}
+
+.page-sec {
+  padding: 4.9rem 0;
+}
+
+.page-title {
+  font-family: 'TheJamsil5Bold';
+  font-size: 2.4rem;
+}
+
+#mainNav {
+  background-color: #212329ed;
+}
+
+.page-header {
+  height: 35rem;
+  overflow: hidden;
+}
+
+/* --------- main css 끝 --------- */
