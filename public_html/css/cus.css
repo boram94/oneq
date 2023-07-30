@@ -47,11 +47,5 @@
     overflow: hidden;
 }
 
-@media (max-width: 576px) {
-    .page-sec {
-        background-image: url("../assets/cus/mobilemain.jpg");
-        background-size: cover;
-    }
-}
 
 /* --------- main css 끝 --------- */
