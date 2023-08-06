@@ -118,8 +118,7 @@
                 $(window).scroll(function(){
                     var scrT = $(window).scrollTop();
                     if(scrT == $(document).height() - $(window).height()){
-                        console.log(scrT); //스크롤 값 확인용
-                        //스크롤이 끝에 도달했을때 실행될 이벤트
+                        printList();
                     } else {
                         //아닐때 이벤트
                     }
@@ -127,9 +126,11 @@
             });
 
             let searchList = [];
+            
             let lastIndex = 0;
             const searchKwd = () => {
 
+                lastIndex = 0;
                 let searchInput = $('#searchInput').val();
                 searchList = [];
 
@@ -144,17 +145,22 @@
                 }else{
                     searchList = codeList;
                 }
-
+                
+                $('#list li').remove();
                 printList();
             }
 
             const printList = () => {
-
-                $('#list li').remove();
+                
+                let upNumber = searchList.length - lastIndex > 20 ? lastIndex+20 : searchList.length;
+                
+                
                 if(searchList.length > 0){
-                    searchList.forEach(e => {
-                        $('#list').append('<li>' + e.상병코드 + '  ' + e.상병코드명 + '</li>');
-                    });
+                    for (let i = lastIndex; i < upNumber; i++) {
+                        $('#list').append('<li>' + searchList[i].상병코드 + '  ' + searchList[i].상병코드명 + '</li>');
+                    }
+
+                    lastIndex += 20;
                     
                 }else{
                     $('#list').append('<li>조회 결과가 없습니다.</li>');
