@@ -54,56 +54,56 @@
         <section class="page-sec">
             <div class="container">
                 <h1 class="page-title text-center text-secondary mb-5"><a class="navbar-brand" href="/public_html/main.html"></a>산재원큐</h1>
-                <h2>상해종류</h2>
+                <h2>상해종류 > 떨어짐</h2>
                 
                 <!-- 버튼 wrap-->
                 <div class="row justify-content-center p-4">
                     <!-- Portfolio Item 1-->
                     <div class="col-6 mb-4">
-                        <div class="btn-item justify-content-center align-items-center d-flex" id="nextButton">
-                            <div class="text-center">떨어짐</div>
+                        <div class="btn-item justify-content-center align-items-center d-flex" onclick="pageMove('selfDiagnosis')">
+                            <div class="text-center">상세정보부족</div>
                         </div>
                     </div>
                     <!-- Portfolio Item 2-->
                     <div class="col-6 mb-4">
                         <div class="btn-item justify-content-center align-items-center d-flex" onclick="pageMove('selfDiagnosis')">
-                            <div class="text-center">넘어짐</div>
+                            <div class="text-center">계단/사다리</div>
                         </div>
                     </div>
                     <!-- Portfolio Item 3-->
                     <div class="col-6 mb-4">
                         <div class="btn-item justify-content-center align-items-center d-flex" onclick="pageMove('selfDiagnosis')">
-                            <div class="text-center">깔림</div>
+                            <div class="text-center">개구부 등 지면</div>
                         </div>
                     </div>
                     <!-- Portfolio Item 4-->
                     <div class="col-6 mb-4">
                         <div class="btn-item justify-content-center align-items-center d-flex" onclick="pageMove('selfDiagnosis')">
-                            <div class="text-center">부딪힘</div>
+                            <div class="text-center">지붕</div>
                         </div>
                     </div>
                     <!-- Portfolio Item 1-->
                     <div class="col-6 mb-4">
                         <div class="btn-item justify-content-center align-items-center d-flex" onclick="pageMove('selfDiagnosis')">
-                            <div class="text-center">맞음</div>
+                            <div class="text-center">재료더미 및 적재물</div>
                         </div>
                     </div>
                     <!-- Portfolio Item 2-->
                     <div class="col-6 mb-4">
                         <div class="btn-item justify-content-center align-items-center d-flex" onclick="pageMove('selfDiagnosis')">
-                            <div class="text-center">무너짐</div>
+                            <div class="text-center">비계 등 가설구조물</div>
                         </div>
                     </div>
                     <!-- Portfolio Item 3-->
                     <div class="col-6 mb-4">
                         <div class="btn-item justify-content-center align-items-center d-flex" onclick="pageMove('selfDiagnosis')">
-                            <div class="text-center">끼임</div>
+                            <div class="text-center">건물 대들보나 철골 등 기타 구조물</div>
                         </div>
                     </div>
                     <!-- Portfolio Item 4-->
                     <div class="col-6 mb-4">
                         <div class="btn-item justify-content-center align-items-center d-flex" onclick="pageMove('selfDiagnosis')">
-                            <div class="text-center">절단·베임·찔림</div>
+                            <div class="text-center">운송수단 또는 기계 등 설비</div>
                         </div>
                     </div>
                 </div>
@@ -191,17 +191,8 @@
         //         getApi(); 
         //     });
 
-        function goToNextPage() {
-            // 여기에 다음 페이지의 URL을 설정합니다.
-            const nextPageUrl = "fall.html";
-
-            // 현재 창에서 다음 페이지로 이동합니다.
-            window.location.href = nextPageUrl;
-        }
-
-        // 버튼 클릭 시 다음 페이지로 이동하는 이벤트 처리
-        const nextButton = document.getElementById("nextButton");
-        nextButton.addEventListener("click", goToNextPage);
+      
+            
 
             
             
