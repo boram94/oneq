@@ -53,7 +53,7 @@
         <!-- 서비스 Section-->
         <section class="page-sec">
             <div class="container">
-                <h1 class="page-title text-center text-secondary mb-5">산재원큐</h1>
+                <h1 class="page-title text-center text-secondary mb-5"><a class="navbar-brand" href="/public_html/main.html"></a>산재원큐</h1>
                 <h2>상해종류</h2>
                 
                 <!-- 버튼 wrap-->
@@ -66,43 +66,43 @@
                     </div>
                     <!-- Portfolio Item 2-->
                     <div class="col-6 mb-4">
-                        <div class="btn-item justify-content-center align-items-center d-flex" onclick="pageMove('codeSearch')">
+                        <div class="btn-item justify-content-center align-items-center d-flex" onclick="pageMove('selfDiagnosis')">
                             <div class="text-center">넘어짐</div>
                         </div>
                     </div>
                     <!-- Portfolio Item 3-->
                     <div class="col-6 mb-4">
-                        <div class="btn-item justify-content-center align-items-center d-flex" onclick="pageMove('consult')">
+                        <div class="btn-item justify-content-center align-items-center d-flex" onclick="pageMove('selfDiagnosis')">
                             <div class="text-center">깔림</div>
                         </div>
                     </div>
                     <!-- Portfolio Item 4-->
                     <div class="col-6 mb-4">
-                        <div class="btn-item justify-content-center align-items-center d-flex" onclick="pageMove('homepageMove')">
+                        <div class="btn-item justify-content-center align-items-center d-flex" onclick="pageMove('selfDiagnosis')">
                             <div class="text-center">부딪힘</div>
                         </div>
                     </div>
-                     <!-- Portfolio Item 5-->
-                     <div class="col-6 mb-4">
-                        <div class="btn-item justify-content-center align-items-center d-flex" onclick="pageMove('homepageMove')">
+                    <!-- Portfolio Item 1-->
+                    <div class="col-6 mb-4">
+                        <div class="btn-item justify-content-center align-items-center d-flex" onclick="pageMove('selfDiagnosis')">
                             <div class="text-center">맞음</div>
                         </div>
                     </div>
-                     <!-- Portfolio Item 6-->
-                     <div class="col-6 mb-4">
-                        <div class="btn-item justify-content-center align-items-center d-flex" onclick="pageMove('homepageMove')">
+                    <!-- Portfolio Item 2-->
+                    <div class="col-6 mb-4">
+                        <div class="btn-item justify-content-center align-items-center d-flex" onclick="pageMove('selfDiagnosis')">
                             <div class="text-center">무너짐</div>
                         </div>
                     </div>
-                     <!-- Portfolio Item 7-->
-                     <div class="col-6 mb-4">
-                        <div class="btn-item justify-content-center align-items-center d-flex" onclick="pageMove('homepageMove')">
+                    <!-- Portfolio Item 3-->
+                    <div class="col-6 mb-4">
+                        <div class="btn-item justify-content-center align-items-center d-flex" onclick="pageMove('selfDiagnosis')">
                             <div class="text-center">끼임</div>
                         </div>
                     </div>
-                     <!-- Portfolio Item 8-->
-                     <div class="col-6 mb-4">
-                        <div class="btn-item justify-content-center align-items-center d-flex" onclick="pageMove('homepageMove')">
+                    <!-- Portfolio Item 4-->
+                    <div class="col-6 mb-4">
+                        <div class="btn-item justify-content-center align-items-center d-flex" onclick="pageMove('selfDiagnosis')">
                             <div class="text-center">절단·베임·찔림</div>
                         </div>
                     </div>
@@ -153,10 +153,48 @@
         <script src="js/cus.js"></script>
         <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
         <script>
+        //     // 데이터 담을 리스트
+        //     let dataList = [];
 
-            $(document).ready(function() {
-                btnActive()
-            });
+        //     // API 가져오는 함수
+        //     const getApi = () => {
+        //         $.ajax({
+        //             type: "GET",
+        //             url: "https://api.odcloud.kr/api/15049607/v1/uddi:37e76d34-8975-4c64-9155-de570e2b629c?page=1&perPage=10&serviceKey=STx3YXftLPYrIM9dsdXS99WzEJL5br20c%2FAaPa%2BKgqycX0HmaDYwxAY6IhLXGS%2BfgguYEBTZOj7z8HsxXxUQFA%3D%3D",
+        //             success: function (response) {
+        //                 dataList = response.data;
+        //                 showButtons(dataList); // 데이터를 가져온 후에 리스트로 보여주는 함수 호출
+        //             },
+        //             error: function (error) {
+        //                 console.log(error);
+        //             },
+        //         });
+        //     }
+
+        
+        //  // 데이터를 이용하여 버튼 보여주기
+        //  function showButtons(data) {
+        //     const buttonContainer = $("#buttonContainer");
+        //     buttonContainer.empty(); // 기존 버튼 초기화
+
+        //     data.forEach(item => {
+        //         const button = $("<button id=btn-item></buttom>").text(item.구분명칭);
+        //         button.on("click", function () {
+        //             showDetails(item);
+        //         });
+
+        //         buttonContainer.append(button);
+        //     });
+        // }
+
+        //     $(document).ready(function() {
+        //         getApi(); 
+        //     });
+
+      
+            
+
+            
             
         </script>
 

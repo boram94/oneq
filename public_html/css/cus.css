@@ -49,3 +49,20 @@
 
 
 /* --------- main css 끝 --------- */
+
+/* codeSearch list css 시작 */
+#list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  #list li {
+    margin-bottom: 8px;
+    padding: 10px;
+    background-color: #f7f7f7;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+  }
+  /* codeSearch list css 끝! */
+

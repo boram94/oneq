@@ -22,6 +22,11 @@
                 background: #cde5de;
             }
 
+            header {
+            height: 7rem;
+            overflow: hidden;
+            }
+
         </style>
     </head>
     <body id="page-top">
@@ -44,6 +49,7 @@
             </div>
         </nav>
         <!-- 메인페이지-->
+        <!-- 헤더 header -->
         <header class="d-none d-sm-block text-white text-center bg-white page-header">
             <div class="container d-flex align-items-center flex-column">
                 <!-- 메인페이지 이미지-->
@@ -54,37 +60,18 @@
         <section class="page-sec">
             <div class="container">
                 <h1 class="page-title text-center text-secondary mb-5"><a class="navbar-brand" href="/public_html/main.html">산재원큐</a></h1>
-                
-                <!-- 버튼 wrap-->
-                <div class="row justify-content-center p-4">
-                    <!-- Portfolio Item 1-->
-                    <div class="col-6 mb-4">
-                        <div class="btn-item justify-content-center align-items-center d-flex" onclick="pageMove('main')">
-                            <div class="text-center">보험자가진단</div>
-                        </div>
-                    </div>
-                    <!-- Portfolio Item 2-->
-                    <div class="col-6 mb-4">
-                        <div class="btn-item justify-content-center align-items-center d-flex" onclick="pageMove('codeSearch')">
-                            <div class="text-center">상병코드조회</div>
-                        </div>
-                    </div>
-                    <!-- Portfolio Item 3-->
-                    <div class="col-6 mb-4">
-                        <div class="btn-item justify-content-center align-items-center d-flex" onclick="pageMove('consult')">
-                            <div class="text-center">노무사<br>1:1상담</div>
-                        </div>
-                    </div>
-                    <!-- Portfolio Item 4-->
-                    <div class="col-6 mb-4">
-                        <div class="btn-item justify-content-center align-items-center d-flex" onclick="pageMove('homepageMove')">
-                            <div class="text-center">홈페이지<br>바로가기</div>
-                        </div>
-                    </div>
-                </div>
+            <!-- 검색창 -->
+            <div class="d-flex justify-content-center align-items-center" id="searchForm">
+                <input type="text" class="form-control me-2" id="searchInput" onkeypress="if( event.keyCode == 13 ){searchKwd();}" placeholder="검색어를 입력하세요">
+                <button type="button" class="btn btn-primary" onclick="searchKwd()"><i class="fa-solid fa-search"></i></button>
+            </div>
+            
+              <hr>
+              <!-- 상병코드 출력 -->
+              <ul id="list"></ul>
             </div>
         </section>
-       
+        
         <!-- Footer-->
         <footer>
             
@@ -100,9 +87,69 @@
         <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
         <script>
 
+            // 데이터 담을 리스트
+            let codeList = [];
+
+            // api 가져오는 함수
+            const getApi = () => {
+
+                $.ajax({
+                    type: "GET",
+                    url: "https://api.odcloud.kr/api/15049598/v1/uddi:2a30bbdf-4902-4650-8458-8abe164feecc?page=1&perPage=360&serviceKey=%2FfnZ63Dry3cHXmPPskOO1%2BcsvWgmrr9Wm%2FA3EKx0xV3CL%2BvJqpib1M7%2F5WK1wUistdwIt4eqyyUM948IckVQEA%3D%3D",
+                    success: function (response) {
+                        codeList = response.data;
+                        searchKwd();
+                        //for (var i = 0; i < diseases.length; i++) {
+                            // let name = diseases[i]['상병코드명'];
+                            // let id = diseases[i]['상병코드'];
+                            //$('#list').append('<li>' + id + '  ' + name + '</li>');
+                        //}
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    },
+                });
+            }
+
             $(document).ready(function() {
                 btnActive()
+                getApi()
             });
+
+            let searchList = [];
+            const searchKwd = () => {
+
+                let searchInput = $('#searchInput').val();
+                searchList = [];
+
+                if(searchInput != '' || searchInput != undefined){
+
+                    codeList.forEach(e => {
+                        if(e.상병코드.indexOf(searchInput.toUpperCase()) != -1 || e.상병코드명.indexOf(searchInput.toUpperCase()) != -1 ){
+                            searchList.push(e);
+                        }
+                    });
+                    
+                }else{
+                    searchList = codeList;
+                }
+
+                printList();
+            }
+
+            const printList = () => {
+
+                $('#list li').remove();
+                if(searchList.length > 0){
+                    searchList.forEach(e => {
+                        $('#list').append('<li>' + e.상병코드 + '  ' + e.상병코드명 + '</li>');
+                    });
+                    
+                }else{
+                    $('#list').append('<li>조회 결과가 없습니다.</li>');
+                }
+            }
+
 
         </script>
 
