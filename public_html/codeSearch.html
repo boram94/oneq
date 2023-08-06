@@ -61,10 +61,11 @@
             <div class="container">
                 <h1 class="page-title text-center text-secondary mb-5">산재원큐</h1>
             <!-- 검색창 -->
-            <form class="d-flex justify-content-center align-items-center">
-                <input type="text" class="form-control me-2" placeholder="검색어를 입력하세요">
+            <form class="d-flex justify-content-center align-items-center" id="searchForm">
+                <input type="text" class="form-control me-2" id="searchInput" placeholder="검색어를 입력하세요">
                 <button type="submit" class="btn btn-primary"><i class="fa-solid fa-search"></i></button>
-              </form>
+            </form>
+            
               <hr>
               <!-- 상병코드 출력 -->
               <ul id="list"></ul>
@@ -92,7 +93,6 @@
 
             // 상병코드 api
             $(document).ready(function () {
-            // 상병코드 api
             $.ajax({
                 type: "GET",
                 url: "https://api.odcloud.kr/api/15049598/v1/uddi:2a30bbdf-4902-4650-8458-8abe164feecc?page=1&perPage=360&serviceKey=%2FfnZ63Dry3cHXmPPskOO1%2BcsvWgmrr9Wm%2FA3EKx0xV3CL%2BvJqpib1M7%2F5WK1wUistdwIt4eqyyUM948IckVQEA%3D%3D",
@@ -101,8 +101,7 @@
                     for (var i = 0; i < diseases.length; i++) {
                         let name = diseases[i]['상병코드명'];
                         let id = diseases[i]['상병코드'];
-                        // Create <li> element and append it to the list
-                        $('#list').append('<li>' + id + ' ' + name + '</li>');
+                        $('#list').append('<li>' + id + '  ' + name + '</li>');
                     }
                 },
                 error: function (error) {
