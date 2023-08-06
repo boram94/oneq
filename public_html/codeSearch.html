@@ -50,8 +50,11 @@
         </nav>
         <!-- 메인페이지-->
         <!-- 헤더 header -->
-        <header class="d-none d-sm-block text-white text-center bg-white">
-            <!-- none img -->
+        <header class="d-none d-sm-block text-white text-center bg-white page-header">
+            <div class="container d-flex align-items-center flex-column">
+                <!-- 메인페이지 이미지-->
+                <img class="masthead-avatar mb-5" style="min-width: auto;max-width: 100vw;" src="https://www.sisain.co.kr/news/photo/202108/45275_81424_2432.jpg" alt="..." />
+            </div>
         </header>
         <!-- 서비스 Section-->
         <section class="page-sec">
@@ -62,10 +65,12 @@
                 <input type="text" class="form-control me-2" placeholder="검색어를 입력하세요">
                 <button type="submit" class="btn btn-primary"><i class="fa-solid fa-search"></i></button>
               </form>
+              <hr>
+              <!-- 상병코드 출력 -->
+              <ul id="list"></ul>
             </div>
         </section>
-       
-        <!-- Footer-->
+        
         <!-- Footer-->
         <footer>
             
@@ -84,7 +89,30 @@
             $(document).ready(function() {
                 btnActive()
             });
-            
+
+            // 상병코드 api
+            $(document).ready(function () {
+            // 상병코드 api
+            $.ajax({
+                type: "GET",
+                url: "https://api.odcloud.kr/api/15049598/v1/uddi:2a30bbdf-4902-4650-8458-8abe164feecc?page=1&perPage=360&serviceKey=%2FfnZ63Dry3cHXmPPskOO1%2BcsvWgmrr9Wm%2FA3EKx0xV3CL%2BvJqpib1M7%2F5WK1wUistdwIt4eqyyUM948IckVQEA%3D%3D",
+                success: function (response) {
+                    var diseases = response.data;
+                    for (var i = 0; i < diseases.length; i++) {
+                        let name = diseases[i]['상병코드명'];
+                        let id = diseases[i]['상병코드'];
+                        // Create <li> element and append it to the list
+                        $('#list').append('<li>' + id + ' ' + name + '</li>');
+                    }
+                },
+                error: function (error) {
+                    console.log(error);
+                },
+            });
+        });
+               
+               
+                            
             
         </script>
 
