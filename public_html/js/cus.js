@@ -2,7 +2,7 @@
 
 // 상단메뉴 바 클릭 시 현재위치 효과
 const btnActive = () => {
-
+    console.log(window);
     // url 읽어오기
     let url = window.location.href;
     // ?로 구분짓고 쿼리스트링 부분가져오기
@@ -20,7 +20,7 @@ const btnActive = () => {
         $('#'+menu).addClass('active');
 
     }else{
-        $('#home').addClass('active');
+        $('#main').addClass('active');
     }
 
 }
@@ -29,6 +29,7 @@ const btnActive = () => {
 const pageMove = (m) => {
 
     // url 담기
-    location.href = window.location.pathname + "?m=" + m;
+    
+    location.href = window.origin + "/public_html/"+ m +".html?m=" + m;
     
 }

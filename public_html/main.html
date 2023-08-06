@@ -34,11 +34,11 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id="home" href="/public_html/main.html?m=home">홈</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id="main" href="/public_html/main.html?m=main">홈</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id="selfDiagnosis" href="/public_html/main.html?m=selfDiagnosis">보험자가진단</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id="codeSearch" href="/public_html/main.html?m=codeSearch">상병코드조회</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id="codeSearch" href="/public_html/codeSearch.html?m=codeSearch">상병코드조회</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id="consult" onclick="window.open('http://plus.the-bosang.com/Counsel')">노무사 1:1 상담</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id="homepageMove" href="/public_html/homepageMove.html">홈페이지 바로가기</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id="homepageMove" href="/public_html/homepageMove.html?m=mainpageMove">홈페이지 바로가기</a></li>
                     </ul>
                 </div>
             </div>
@@ -53,13 +53,13 @@
         <!-- 서비스 Section-->
         <section class="page-sec">
             <div class="container">
-                <h1 class="page-title text-center text-secondary mb-5">산재원큐</h1>
+                <h1 class="page-title text-center text-secondary mb-5"><a class="navbar-brand" href="/public_html/main.html">산재원큐</a></h1>
                 
                 <!-- 버튼 wrap-->
                 <div class="row justify-content-center p-4">
                     <!-- Portfolio Item 1-->
                     <div class="col-6 mb-4">
-                        <div class="btn-item justify-content-center align-items-center d-flex" onclick="pageMove('selfDiagnosis')">
+                        <div class="btn-item justify-content-center align-items-center d-flex" onclick="pageMove('main')">
                             <div class="text-center">보험자가진단</div>
                         </div>
                     </div>
