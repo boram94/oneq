@@ -114,9 +114,20 @@
             $(document).ready(function() {
                 btnActive()
                 getApi()
+
+                $(window).scroll(function(){
+                    var scrT = $(window).scrollTop();
+                    if(scrT == $(document).height() - $(window).height()){
+                        console.log(scrT); //스크롤 값 확인용
+                        //스크롤이 끝에 도달했을때 실행될 이벤트
+                    } else {
+                        //아닐때 이벤트
+                    }
+                });
             });
 
             let searchList = [];
+            let lastIndex = 0;
             const searchKwd = () => {
 
                 let searchInput = $('#searchInput').val();
