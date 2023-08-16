@@ -22,9 +22,7 @@
                 background: #cde5de;
             }
 
-            .btn-item {
-                height: 3.5rem;
-            }
+           
 
         </style>
     </head>
@@ -59,58 +57,8 @@
             <div class="container">
                 <h1 class="page-title text-center text-secondary mb-5"><a class="navbar-brand" href="/public_html/main.html">산재원큐</a></h1>
                 <h5>상해종류</h5>
-                
-                <!-- 버튼 wrap-->
-                <div class="row justify-content-center p-4">
-                    <!-- Portfolio Item 1-->
-                    <div class="col-12 mb-3">
-                        <div class="btn-item justify-content-center align-items-center d-flex" id="nextButton">
-                            <div class="text-center">떨어짐</div>
-                        </div>
-                    </div>
-                    <!-- Portfolio Item 2-->
-                    <div class="col-12 mb-3">
-                        <div class="btn-item justify-content-center align-items-center d-flex">
-                            <div class="text-center">넘어짐</div>
-                        </div>
-                    </div>
-                    <!-- Portfolio Item 3-->
-                    <div class="col-12 mb-3">
-                        <div class="btn-item justify-content-center align-items-center d-flex">
-                            <div class="text-center">깔림</div>
-                        </div>
-                    </div>
-                    <!-- Portfolio Item 4-->
-                    <div class="col-12 mb-3">
-                        <div class="btn-item justify-content-center align-items-center d-flex">
-                            <div class="text-center">부딪힘</div>
-                        </div>
-                    </div>
-                    <!-- Portfolio Item 1-->
-                    <div class="col-12 mb-3">
-                        <div class="btn-item justify-content-center align-items-center d-flex">
-                            <div class="text-center">맞음</div>
-                        </div>
-                    </div>
-                    <!-- Portfolio Item 2-->
-                    <div class="col-12 mb-3">
-                        <div class="btn-item justify-content-center align-items-center d-flex">
-                            <div class="text-center">무너짐</div>
-                        </div>
-                    </div>
-                    <!-- Portfolio Item 3-->
-                    <div class="col-12 mb-3">
-                        <div class="btn-item justify-content-center align-items-center d-flex">
-                            <div class="text-center">끼임</div>
-                        </div>
-                    </div>
-                    <!-- Portfolio Item 4-->
-                    <div class="col-12 mb-3">
-                        <div class="btn-item justify-content-center align-items-center d-flex">
-                            <div class="text-center">절단·베임·찔림</div>
-                        </div>
-                    </div>
-                </div>
+              <!-- 상병코드 출력 -->
+              <div id="list"></div>
             </div>
         </section>
        
@@ -166,6 +114,22 @@
         //         getApi(); 
         //     });
 
+        $.ajax({
+                    type: "GET",
+                    url: "https://api.odcloud.kr/api/15049607/v1/uddi:82066278-b2c8-4268-8b76-f77fd9355043?page=1&perPage=124&serviceKey=%2FfnZ63Dry3cHXmPPskOO1%2BcsvWgmrr9Wm%2FA3EKx0xV3CL%2BvJqpib1M7%2F5WK1wUistdwIt4eqyyUM948IckVQEA%3D%3D",
+                    success: function (response) {
+                        list = response.data;
+                        for (var i = 0; i < list.length; i++) {
+                            let name = list[i]['구분명칭'];
+                            // let id = list[i]['상병코드'];
+                            $('#list').append('<button>' + '  ' + name + '</button>');
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    },
+                });
+            
         function goToNextPage() {
             // 여기에 다음 페이지의 URL을 설정합니다.
             const nextPageUrl = "fall.html";
