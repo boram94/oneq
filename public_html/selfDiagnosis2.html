@@ -62,11 +62,10 @@
                 <h1 class="page-title text-center text-secondary mb-5"><a class="navbar-brand" href="/public_html/main.html">산재원큐</a></h1>
                 <div class="row">
                     <div class="col-8"><span class="font-TheJamsil5Bold" id="stepHeader">상해종류</span></div>
-                    <div class="col-4 text-end">
+                    <div class="col-4 text-end" id="prevBtnDiv">
                         <button class="btn text-uppercase bg-primary text-white rounded font-TheJamsil5Bold d-none" type="button" onclick="prevBtn()" id="prevBtn">이전</button>
                     </div>
                 </div>
-
                 
                 <!-- 버튼 wrap-->
                 <div class="row justify-content-center p-4" id="btn-list">
@@ -79,6 +78,10 @@
         <footer>
             
         </footer>
+
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            ...
+        </div>
         <!-- Copyright Section-->
         <div class="copyright py-4 text-center text-white d-none d-sm-block ">
             <div class="container"><small>Copyright &copy; Your Website 2023</small></div>
@@ -123,7 +126,7 @@
         
         
             let btnList = []; // 버튼 데이터담을 리스트
-
+            let stepHeader = '';
             // 버튼 데이터 만들기
             function makeBtnDatas(code) {
                 
@@ -132,13 +135,15 @@
                 let inputData = '';
                 if(code == '') {
                     $('#stateValue').val(code);
-                    $('#stepHeader').html('상해종류');
+                    stepHeader = '상해종류';
                     btnList = keyCode;
                     inputData = 'makeBtnDatas';
                 }else{
+                    $('#stateValue').val(code);
                     $('#prevBtn').removeClass('d-none');
-                    let cname = keyCode.find(item => item.code === code)?.name || "";
-                    $('#stepHeader').html('상해종류 > '+ cname);
+                    let name = keyCode.find(item => item.code === code)?.name || "";
+                    stepHeader += ' > '+ name;
+                    $('#stepHeader').html();
 
                     // 상해종류 코드에 해당되는 
                     dataList.forEach(v => {
@@ -146,9 +151,11 @@
                             btnList.push({code : v.발생형태코드, name : v.발생형태명});
                         }
                     });
+
                     inputData = 'nextResult';
                     
                 }
+                $('#stepHeader').html(stepHeader);
                 createBtnHtml(inputData);
             }
 
@@ -172,10 +179,14 @@
             }
 
             // 이전 버튼 클릭 시 실행
-            const prevBtn = () => {
+            const prevBtn = (code) => {
 
                 // 상해종류 코드 초기화
-                $('#stateValue').val('');
+                if($('#prevBtn').text() == '이전'){
+                    $('#stateValue').val('');
+                }else{
+                    $('#prevBtn').text('이전');
+                }
 
                 // 상해종류 목록 생성
                 makeBtnDatas(''); 
@@ -183,6 +194,35 @@
                 // 이전버튼 안보이게
                 $('#prevBtn').addClass('d-none');
 
+            }    
+
+            // 이전 버튼 클릭 시 실행
+            const nextResult = (code) => {
+                
+                // 스텝 추가
+                let name = btnList.find(item => item.code === code)?.name || "";
+                $('#stepHeader').html(stepHeader + ' > '+ name);
+
+                // 버튼 목록 지우기
+                $('#btn-list div').remove();
+                let resultHtml = '<div><p class="font-TheJamsil5Bold" style="color:#317961;">신청가능 보험종류</p></div>'+
+                    '<div class="card mb-3">'+
+                    '   <div class="card-body">'+
+                    '        <p>- 이런보험</p>'+
+                    '        <p>- 저런보험</p>'+
+                    '        <p>- 저런보험</p>'+
+                    '        <p>- 저런보험</p>'+
+                    '    </div>'+
+                    '</div>'+
+                    '<div class="card-body">'+
+                    '    <p class="font-TheJamsil5Bold"><a class="navbar-brand" href="/public_html/codeSearch.html?m=codeSearch">상해질병 코드확인</a></p>'+
+                    '    <p class="font-TheJamsil5Bold"><a class="navbar-brand" href="#">필요서류 확인</a></p>'+
+                    '    <p class="font-TheJamsil5Bold"><a class="navbar-brand" href="http://plus.the-bosang.com/Counsel">노무사 1:1 상담</a></p>'+
+                    '</div>';
+                $('#btn-list').html(resultHtml);
+
+                // 이전버튼 text 변경
+                $('#prevBtn').text('처음으로');
             }    
 
         </script>
