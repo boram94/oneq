@@ -70,3 +70,15 @@
   }
   /* codeSearch list css 끝! */
 
+  /* selfDiagnosis button 시작*/
+  #list button {
+    border: none;
+    margin-bottom: 8px;
+    padding: 10px;
+    background-color: #f7f7f7;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+  }
+  /* selfDiagnosis button 끝*/
+
