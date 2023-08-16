@@ -89,7 +89,140 @@
         <script src="js/scripts.js"></script>
         <script src="js/cus.js"></script>
         <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-       
+        <script>
+
+            
+            // API데이터 담을 리스트
+            let dataList = [];
+
+            // 상해종류 데이터 리스트 (11개)
+            let keyCode = [{code : "1",name : "떨어짐"},{code : "2",name : "넘어짐"},{code : "3",name : "깔림"},{code : "4",name : "부딪힘"},{code : "5",name : "맞음"},{code : "6",name : "무너짐"},{code : "7",name : "끼임"},{code : "8",name : "절단·베임·찔림"},{code : "9",name : "감전"},{code : "10",name : "감전"},{code : "11",name : "화재"}]
+
+            // API로 데이터 가져오기
+            const getApi = () => {
+                $.ajax({
+                    type: "GET",
+                    url: "https://api.odcloud.kr/api/15049607/v1/uddi:82066278-b2c8-4268-8b76-f77fd9355043?page=1&perPage=200&serviceKey=%2FfnZ63Dry3cHXmPPskOO1%2BcsvWgmrr9Wm%2FA3EKx0xV3CL%2BvJqpib1M7%2F5WK1wUistdwIt4eqyyUM948IckVQEA%3D%3D",
+                    success: function (response) {
+                        
+                        // 필요 데이터만 담기
+                        dataList = response.data;
+                        
+                        // 버튼 데이터 생성
+                        makeBtnDatas(''); 
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    },
+                }); 
+            }
+
+            $(document).ready(function() {
+                // api 데이터 가져오기
+                getApi(); 
+            });
+
+            let btnList = []; // 버튼 데이터담을 리스트
+            let stepHeader = '';
+            // 버튼 데이터 만들기
+            function makeBtnDatas(code) {
+                
+                // 초기화
+                btnList = [];
+                let inputData = '';
+                if(code == '') {
+                    $('#stateValue').val(code);
+                    stepHeader = '상해종류';
+                    btnList = keyCode;
+                    inputData = 'makeBtnDatas';
+                }else{
+                    $('#stateValue').val(code);
+                    $('#prevBtn').removeClass('d-none');
+                    let name = keyCode.find(item => item.code === code)?.name || "";
+                    stepHeader += ' > '+ name;
+                    $('#stepHeader').html();
+
+                    // 상해종류 코드에 해당되는 
+                    dataList.forEach(v => {
+                        if(v.구분코드 == code){
+                            btnList.push({code : v.발생형태코드, name : v.발생형태명});
+                        }
+                    });
+
+                    inputData = 'nextResult';
+                    
+                }
+                $('#stepHeader').html(stepHeader);
+                createBtnHtml(inputData);
+            }
+
+            // 버튼 html 생성 및 추가
+            // s : step , r : result
+            const createBtnHtml = (k) => {
+
+                // 버튼 목록 지우기
+                $('#btn-list div').remove();
+
+                let btnHtml = ''; // 버튼 html 변수
+
+                // btnList 데이터로 버튼 html 만들기
+                btnList.forEach(v => {
+                    btnHtml += '<div class="col-12 mb-3"><div class="btn-item justify-content-center align-items-center d-flex" onclick="'+k+'(\''+v.code+'\')"><div class="text-center">'+v.name+'</div></div></div>';
+                });
+
+                // #btn-list div에 만들어진 버튼 html 넣기
+                $('#btn-list').html(btnHtml);
+                
+            }
+
+            // 이전 버튼 클릭 시 실행
+            const prevBtn = (code) => {
+
+                // 상해종류 코드 초기화
+                if(code == ''){
+                    $('#stateValue').val('');
+                }else{
+                    $('#stateValue').val(code);
+                }
+
+                // 상해종류 목록 생성
+                makeBtnDatas(''); 
+
+        $.ajax({
+                    type: "GET",
+                    url: "https://api.odcloud.kr/api/15049607/v1/uddi:82066278-b2c8-4268-8b76-f77fd9355043?page=1&perPage=124&serviceKey=%2FfnZ63Dry3cHXmPPskOO1%2BcsvWgmrr9Wm%2FA3EKx0xV3CL%2BvJqpib1M7%2F5WK1wUistdwIt4eqyyUM948IckVQEA%3D%3D",
+                    success: function (response) {
+                        list = response.data;
+                        for (var i = 0; i < list.length; i++) {
+                            let name = list[i]['구분명칭'];
+                            // let id = list[i]['상병코드'];
+                            $('#list').append('<button>' + '  ' + name + '</button>');
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    },
+                });
+            
+                // 이전버튼 안보이게
+                $('#prevBtn').addClass('d-none');
+
+            }    
+
+            // 이전 버튼 클릭 시 실행
+            const nextResult = (code) => {
+                
+                let name = btnList.find(item => item.code === code)?.name || "";
+                $('#stepHeader').html(stepHeader + ' > '+ name);
+                // 상해종류 목록 생성
+
+
+            }    
+        
+        
+           
+
+        </script>
 
     </body>
 </html>
