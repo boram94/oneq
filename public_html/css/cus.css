@@ -8,6 +8,10 @@
 }
 
 /* --------- main css --------- */
+.font-TheJamsil5Bold {
+    font-family: 'TheJamsil5Bold';
+}
+
 .btn-item {
     height: 10rem;
     background-color: rgb(136 195 176);
