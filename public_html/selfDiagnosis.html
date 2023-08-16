@@ -23,12 +23,14 @@
             }
 
             .btn-item {
-                height: 3.5rem;
+                height: 4.5rem;
+                padding: 0.5rem;
             }
 
         </style>
     </head>
     <body id="page-top">
+        <input type="hidden" value="" id="stateValue">
         <!-- 상단 메뉴바 -->
         <nav class="d-none d-sm-block navbar navbar-expand-lg text-uppercase fixed-top" id="mainNav">
             <div class="container">
@@ -58,58 +60,17 @@
         <section class="page-sec">
             <div class="container">
                 <h1 class="page-title text-center text-secondary mb-5"><a class="navbar-brand" href="/public_html/main.html">산재원큐</a></h1>
-                <h5>상해종류</h5>
+                <div class="row">
+                    <div class="col-8"><span class="font-TheJamsil5Bold" id="stepHeader">상해종류</span></div>
+                    <div class="col-4 text-end">
+                        <button class="btn text-uppercase bg-primary text-white rounded font-TheJamsil5Bold d-none" type="button" onclick="prevBtn('')" id="prevBtn">이전</button>
+                    </div>
+                </div>
+
                 
                 <!-- 버튼 wrap-->
-                <div class="row justify-content-center p-4">
-                    <!-- Portfolio Item 1-->
-                    <div class="col-12 mb-3">
-                        <div class="btn-item justify-content-center align-items-center d-flex" id="nextButton">
-                            <div class="text-center">떨어짐</div>
-                        </div>
-                    </div>
-                    <!-- Portfolio Item 2-->
-                    <div class="col-12 mb-3">
-                        <div class="btn-item justify-content-center align-items-center d-flex">
-                            <div class="text-center">넘어짐</div>
-                        </div>
-                    </div>
-                    <!-- Portfolio Item 3-->
-                    <div class="col-12 mb-3">
-                        <div class="btn-item justify-content-center align-items-center d-flex">
-                            <div class="text-center">깔림</div>
-                        </div>
-                    </div>
-                    <!-- Portfolio Item 4-->
-                    <div class="col-12 mb-3">
-                        <div class="btn-item justify-content-center align-items-center d-flex">
-                            <div class="text-center">부딪힘</div>
-                        </div>
-                    </div>
-                    <!-- Portfolio Item 1-->
-                    <div class="col-12 mb-3">
-                        <div class="btn-item justify-content-center align-items-center d-flex">
-                            <div class="text-center">맞음</div>
-                        </div>
-                    </div>
-                    <!-- Portfolio Item 2-->
-                    <div class="col-12 mb-3">
-                        <div class="btn-item justify-content-center align-items-center d-flex">
-                            <div class="text-center">무너짐</div>
-                        </div>
-                    </div>
-                    <!-- Portfolio Item 3-->
-                    <div class="col-12 mb-3">
-                        <div class="btn-item justify-content-center align-items-center d-flex">
-                            <div class="text-center">끼임</div>
-                        </div>
-                    </div>
-                    <!-- Portfolio Item 4-->
-                    <div class="col-12 mb-3">
-                        <div class="btn-item justify-content-center align-items-center d-flex">
-                            <div class="text-center">절단·베임·찔림</div>
-                        </div>
-                    </div>
+                <div class="row justify-content-center p-4" id="btn-list">
+                    
                 </div>
             </div>
         </section>
@@ -128,58 +89,120 @@
         <script src="js/cus.js"></script>
         <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
         <script>
-        //     // 데이터 담을 리스트
-        //     let dataList = [];
 
-        //     // API 가져오는 함수
-        //     const getApi = () => {
-        //         $.ajax({
-        //             type: "GET",
-        //             url: "https://api.odcloud.kr/api/15049607/v1/uddi:37e76d34-8975-4c64-9155-de570e2b629c?page=1&perPage=10&serviceKey=STx3YXftLPYrIM9dsdXS99WzEJL5br20c%2FAaPa%2BKgqycX0HmaDYwxAY6IhLXGS%2BfgguYEBTZOj7z8HsxXxUQFA%3D%3D",
-        //             success: function (response) {
-        //                 dataList = response.data;
-        //                 showButtons(dataList); // 데이터를 가져온 후에 리스트로 보여주는 함수 호출
-        //             },
-        //             error: function (error) {
-        //                 console.log(error);
-        //             },
-        //         });
-        //     }
+            
+            // API데이터 담을 리스트
+            let dataList = [];
 
+            // 상해종류 데이터 리스트 (11개)
+            let keyCode = [{code : "1",name : "떨어짐"},{code : "2",name : "넘어짐"},{code : "3",name : "깔림"},{code : "4",name : "부딪힘"},{code : "5",name : "맞음"},{code : "6",name : "무너짐"},{code : "7",name : "끼임"},{code : "8",name : "절단·베임·찔림"},{code : "9",name : "감전"},{code : "10",name : "감전"},{code : "11",name : "화재"}]
+
+            // API로 데이터 가져오기
+            const getApi = () => {
+                $.ajax({
+                    type: "GET",
+                    url: "https://api.odcloud.kr/api/15049607/v1/uddi:82066278-b2c8-4268-8b76-f77fd9355043?page=1&perPage=200&serviceKey=%2FfnZ63Dry3cHXmPPskOO1%2BcsvWgmrr9Wm%2FA3EKx0xV3CL%2BvJqpib1M7%2F5WK1wUistdwIt4eqyyUM948IckVQEA%3D%3D",
+                    success: function (response) {
+                        
+                        // 필요 데이터만 담기
+                        dataList = response.data;
+                        
+                        // 버튼 데이터 생성
+                        makeBtnDatas(''); 
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    },
+                });
+            }
+
+            $(document).ready(function() {
+                // api 데이터 가져오기
+                getApi(); 
+            });
         
-        //  // 데이터를 이용하여 버튼 보여주기
-        //  function showButtons(data) {
-        //     const buttonContainer = $("#buttonContainer");
-        //     buttonContainer.empty(); // 기존 버튼 초기화
+        
+            let btnList = []; // 버튼 데이터담을 리스트
+            let stepHeader = '';
+            // 버튼 데이터 만들기
+            function makeBtnDatas(code) {
+                
+                // 초기화
+                btnList = [];
+                let inputData = '';
+                if(code == '') {
+                    $('#stateValue').val(code);
+                    stepHeader = '상해종류';
+                    btnList = keyCode;
+                    inputData = 'makeBtnDatas';
+                }else{
+                    $('#stateValue').val(code);
+                    $('#prevBtn').removeClass('d-none');
+                    let name = keyCode.find(item => item.code === code)?.name || "";
+                    stepHeader += ' > '+ name;
+                    $('#stepHeader').html();
 
-        //     data.forEach(item => {
-        //         const button = $("<button id=btn-item></buttom>").text(item.구분명칭);
-        //         button.on("click", function () {
-        //             showDetails(item);
-        //         });
+                    // 상해종류 코드에 해당되는 
+                    dataList.forEach(v => {
+                        if(v.구분코드 == code){
+                            btnList.push({code : v.발생형태코드, name : v.발생형태명});
+                        }
+                    });
 
-        //         buttonContainer.append(button);
-        //     });
-        // }
+                    inputData = 'nextResult';
+                    
+                }
+                $('#stepHeader').html(stepHeader);
+                createBtnHtml(inputData);
+            }
 
-        //     $(document).ready(function() {
-        //         getApi(); 
-        //     });
+            // 버튼 html 생성 및 추가
+            // s : step , r : result
+            const createBtnHtml = (k) => {
 
-        function goToNextPage() {
-            // 여기에 다음 페이지의 URL을 설정합니다.
-            const nextPageUrl = "fall.html";
+                // 버튼 목록 지우기
+                $('#btn-list div').remove();
 
-            // 현재 창에서 다음 페이지로 이동합니다.
-            window.location.href = nextPageUrl;
-        }
+                let btnHtml = ''; // 버튼 html 변수
 
-        // 버튼 클릭 시 다음 페이지로 이동하는 이벤트 처리
-        const nextButton = document.getElementById("nextButton");
-        nextButton.addEventListener("click", goToNextPage);
+                // btnList 데이터로 버튼 html 만들기
+                btnList.forEach(v => {
+                    btnHtml += '<div class="col-12 mb-3"><div class="btn-item justify-content-center align-items-center d-flex" onclick="'+k+'(\''+v.code+'\')"><div class="text-center">'+v.name+'</div></div></div>';
+                });
 
-            
-            
+                // #btn-list div에 만들어진 버튼 html 넣기
+                $('#btn-list').html(btnHtml);
+                
+            }
+
+            // 이전 버튼 클릭 시 실행
+            const prevBtn = (code) => {
+
+                // 상해종류 코드 초기화
+                if(code == ''){
+                    $('#stateValue').val('');
+                }else{
+                    $('#stateValue').val(code);
+                }
+
+                // 상해종류 목록 생성
+                makeBtnDatas(''); 
+
+                // 이전버튼 안보이게
+                $('#prevBtn').addClass('d-none');
+
+            }    
+
+            // 이전 버튼 클릭 시 실행
+            const nextResult = (code) => {
+                
+                let name = btnList.find(item => item.code === code)?.name || "";
+                $('#stepHeader').html(stepHeader + ' > '+ name);
+                // 상해종류 목록 생성
+
+
+            }    
+
         </script>
 
     </body>
