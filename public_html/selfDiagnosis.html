@@ -43,7 +43,7 @@
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id="home" href="/public_html/main.html?m=home">홈</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id="selfDiagnosis" href="/public_html/selfDiagnosis.html?m=selfDiagnosis">보험자가진단</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id="codeSearch" href="/public_html/codeSearch.html?m=codeSearch">상병코드조회</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id="consult" onclick="window.open('http://plus.the-bosang.com/Counsel')">노무사 1:1 상담</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id="consult" onclick="window.open('https://www.kcplaa.or.kr/consult/info')">노무사 1:1 상담</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id="homepageMove" href="/public_html/main.html?m=homepageMove">홈페이지 바로가기</a></li>
                     </ul>
                 </div>
@@ -98,7 +98,7 @@
           </div>
         <!-- Copyright Section-->
         <div class="copyright py-4 text-center text-white d-none d-sm-block ">
-            <div class="container"><small>Copyright &copy; Your Website 2023</small></div>
+            <div class="container"><small>Copyright &copy; 산재원큐 2023</small></div>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -219,7 +219,7 @@
 
                 // 버튼 목록 지우기
                 $('#btn-list div').remove();
-                let resultHtml = '<div><p style="color:#317961; font-weight:bold;">신청가능 보험종류</p></div>'+
+                let resultHtml = '<div><p style="color:#317961; font-weight:bold;"><i class="fa-solid fa-circle-info"></i> 신청가능 보험종류</p></div>'+
                     '<div class="card mb-3">'+
                     '   <div class="card-body">'+
                     '        <p data-bs-toggle="modal" data-bs-target="#exampleModal">- 1보험</p>'+
@@ -229,9 +229,9 @@
                     '    </div>'+
                     '</div>'+
                     '<div class="card-body">'+
-                    '    <p style="color:#317961; font-weight:bold;"><a class="navbar-brand" href="/public_html/codeSearch.html?m=codeSearch">상해·질병 코드 확인</a></p>'+
-                    '    <p style="color:#317961; font-weight:bold;"><a class="navbar-brand" href="#">필요 서류 확인</a></p>'+
-                    '    <p style="color:#317961; font-weight:bold;"><a class="navbar-brand" href="http://plus.the-bosang.com/Counsel">노무사 1:1 상담</a></p>'+
+                    '    <p style="color:#317961; font-weight:bold;"><a class="navbar-brand" href="/public_html/codeSearch.html?m=codeSearch"><i class="fa-solid fa-magnifying-glass"></i> 상병 코드 조회</a></p>'+
+                    '    <p style="color:#317961; font-weight:bold;"><a class="navbar-brand" href="https://www.comwel.or.kr/comwel/comp/proc.jsp"><i class="fa-solid fa-file-circle-check"></i> 필요 서류 확인 > 근로복지공단으로 이동</a></p>'+
+                    '    <p style="color:#317961; font-weight:bold;"><a class="navbar-brand" href="https://www.kcplaa.or.kr/consult/info"><i class="fa-solid fa-people-arrows"></i> 노무사 1:1 상담</a></p>'+
                     '</div>';
                 $('#btn-list').html(resultHtml);
 
