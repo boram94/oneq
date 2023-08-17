@@ -35,15 +35,15 @@
         <nav class="d-none d-sm-block navbar navbar-expand-lg text-uppercase fixed-top" id="mainNav">
             <div class="container">
                 <a class="navbar-brand" href="/public_html/main.html">산재원큐</a>
-                <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded " type="buttoln" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fa-solid fa-bars "></i>
+                <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded " type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa-solid fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id="home" href="/public_html/main.html?m=home">홈</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id="selfDiagnosis" href="/public_html/selfDiagnosis.html?m=selfDiagnosis">보험자가진단</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id="codeSearch" href="/public_html/main.html?m=codeSearch">상병코드조회</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id="consult" href="/public_html/main.html?m=consult">노무사 1:1 상담</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id="codeSearch" href="/public_html/codeSearch.html?m=codeSearch">상병코드조회</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id="consult" onclick="window.open('http://plus.the-bosang.com/Counsel')">노무사 1:1 상담</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id="homepageMove" href="/public_html/main.html?m=homepageMove">홈페이지 바로가기</a></li>
                     </ul>
                 </div>
@@ -60,15 +60,16 @@
         <section class="page-sec">
             <div class="container">
                 <h1 class="page-title text-center text-secondary mb-5"><a class="navbar-brand" href="/public_html/main.html">산재원큐</a></h1>
-                <div class="row">
-                    <div class="col-8"><span class="font-TheJamsil5Bold" id="stepHeader">상해종류</span></div>
+                <p class="font-TheJamsil5Bold"><i class="fa-regular fa-clipboard"></i> 보험자가진단</p>
+                <div class="row mb-2">
+                    <div class="col-8"><span id="stepHeader" style="font-weight: bold;">상해종류</span></div>
                     <div class="col-4 text-end" id="prevBtnDiv">
                         <button class="btn text-uppercase bg-primary text-white rounded font-TheJamsil5Bold d-none" type="button" onclick="prevBtn()" id="prevBtn">이전</button>
                     </div>
                 </div>
                 
                 <!-- 버튼 wrap-->
-                <div class="row justify-content-center p-4" id="btn-list">
+                <div id="btn-list">
                     
                 </div>
             </div>
@@ -111,7 +112,7 @@
             let dataList = [];
 
             // 상해종류 데이터 리스트 (11개)
-            let keyCode = [{code : "1",name : "떨어짐"},{code : "2",name : "넘어짐"},{code : "3",name : "깔림"},{code : "4",name : "부딪힘"},{code : "5",name : "맞음"},{code : "6",name : "무너짐"},{code : "7",name : "끼임"},{code : "8",name : "절단·베임·찔림"},{code : "9",name : "감전"},{code : "10",name : "감전"},{code : "11",name : "화재"}]
+            let keyCode = [{code : "1",name : "떨어짐"},{code : "2",name : "넘어짐"},{code : "3",name : "깔림"},{code : "4",name : "부딪힘"},{code : "5",name : "맞음"},{code : "6",name : "무너짐"},{code : "7",name : "끼임"},{code : "8",name : "절단·베임·찔림"},{code : "9",name : "감전"},{code : "10",name : "폭발·파열"},{code : "11",name : "화재"}]
 
             // API로 데이터 가져오기
             const getApi = () => {
@@ -183,7 +184,7 @@
 
                 // btnList 데이터로 버튼 html 만들기
                 btnList.forEach(v => {
-                    btnHtml += '<div class="col-12 mb-3"><div class="btn-item justify-content-center align-items-center d-flex" onclick="'+k+'(\''+v.code+'\')"><div class="text-center">'+v.name+'</div></div></div>';
+                    btnHtml += '<div id="btn-item" class="justify-content-center align-items-center d-flex" onclick="'+k+'(\''+v.code+'\')"><div class="text-center">'+v.name+'</div></div>';
                 });
 
                 // #btn-list div에 만들어진 버튼 html 넣기
@@ -218,7 +219,7 @@
 
                 // 버튼 목록 지우기
                 $('#btn-list div').remove();
-                let resultHtml = '<div><p class="font-TheJamsil5Bold" style="color:#317961;">신청가능 보험종류</p></div>'+
+                let resultHtml = '<div><p style="color:#317961; font-weight:bold;">신청가능 보험종류</p></div>'+
                     '<div class="card mb-3">'+
                     '   <div class="card-body">'+
                     '        <p data-bs-toggle="modal" data-bs-target="#exampleModal">- 1보험</p>'+
@@ -228,9 +229,9 @@
                     '    </div>'+
                     '</div>'+
                     '<div class="card-body">'+
-                    '    <p class="font-TheJamsil5Bold"><a class="navbar-brand" href="/public_html/codeSearch.html?m=codeSearch">상해질병 코드확인</a></p>'+
-                    '    <p class="font-TheJamsil5Bold"><a class="navbar-brand" href="#">필요서류 확인</a></p>'+
-                    '    <p class="font-TheJamsil5Bold"><a class="navbar-brand" href="http://plus.the-bosang.com/Counsel">노무사 1:1 상담</a></p>'+
+                    '    <p style="color:#317961; font-weight:bold;"><a class="navbar-brand" href="/public_html/codeSearch.html?m=codeSearch">상해·질병 코드 확인</a></p>'+
+                    '    <p style="color:#317961; font-weight:bold;"><a class="navbar-brand" href="#">필요 서류 확인</a></p>'+
+                    '    <p style="color:#317961; font-weight:bold;"><a class="navbar-brand" href="http://plus.the-bosang.com/Counsel">노무사 1:1 상담</a></p>'+
                     '</div>';
                 $('#btn-list').html(resultHtml);
 

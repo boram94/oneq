@@ -71,7 +71,7 @@
   /* codeSearch list css 끝! */
 
   /* selfDiagnosis button 시작*/
-  #list button {
+  #btn-list #btn-item {
     border: none;
     margin-bottom: 8px;
     padding: 10px;
